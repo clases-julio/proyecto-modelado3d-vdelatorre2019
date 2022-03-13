@@ -116,10 +116,16 @@ def soporte(x,y):
     Seleccionado.escalar((0.2, 0.2, 1))
     Seleccionado.mover((x, y, 0.3))
     
-def base_robot():
+def base_robot(xe,ye,ze,xm,ym,zm):
     bpy.ops.object.metaball_add(type='CUBE', radius=1, enter_editmode=False, location=(0, 0, 0))
-    Seleccionado.escalar((0.6, 0.6, 0.08))
-    Seleccionado.mover((0.5, 1, 0.65))
+    Seleccionado.escalar((xe, ye, ze))
+    Seleccionado.mover((xm, ym, zm))
+    
+def eje_robot(xe,ye,ze,xm,ym,zm,ang):
+    Objeto.crearCubo('Eje')
+    Seleccionado.escalar((xe,ye,ze))
+    Seleccionado.mover((xm,ym,zm))
+    Seleccionado.rotarX(ang)
     
     
 
@@ -146,7 +152,18 @@ if __name__ == "__main__":
     soporte(-0.35,2)
     soporte(1.3,2)
     
-    base_robot()
+    base_robot(0.6, 0.6, 0.08,0.5, 1, 0.65)
+    base_robot(0.3, 0.3, 0.06,0.5, 1, 0.93)
+    
+    eje_robot(0.8, 0.8, 2.8,0.5, 1, 1.75,0)
+    
+    bpy.ops.object.metaball_add(type='BALL', radius=1, enter_editmode=False, location=(0, 0, 0))
+    Seleccionado.escalar((0.3, 0.3, 0.3))
+    Seleccionado.mover((0.5, 1, 2.35))
+    
+    eje_robot(0.7, 0.7, 2.8,0.5, 1.6, 2.8,3.14/3)
+    
+
     
  
     
