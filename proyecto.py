@@ -116,6 +116,12 @@ def soporte(x,y):
     Seleccionado.escalar((0.2, 0.2, 1))
     Seleccionado.mover((x, y, 0.3))
     
+def base_robot():
+    bpy.ops.object.metaball_add(type='CUBE', radius=1, enter_editmode=False, location=(0, 0, 0))
+    Seleccionado.escalar((0.6, 0.6, 0.08))
+    Seleccionado.mover((0.5, 1, 0.65))
+    
+    
 
 
 
@@ -139,6 +145,8 @@ if __name__ == "__main__":
     
     soporte(-0.35,2)
     soporte(1.3,2)
+    
+    base_robot()
     
  
     
