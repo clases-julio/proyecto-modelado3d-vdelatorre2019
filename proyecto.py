@@ -127,9 +127,15 @@ def eje_robot(xe,ye,ze,xm,ym,zm,ang):
     Seleccionado.mover((xm,ym,zm))
     Seleccionado.rotarX(ang)
     
+def link():
+    bpy.ops.object.metaball_add(type='BALL', radius=1, enter_editmode=False, location=(0, 0, 0))
+    Seleccionado.escalar((0.28, 0.28, 0.28))
+    Seleccionado.mover((0.5, 1, 2.35))
     
 
-
+    
+    
+    
 
 '''************'''
 ''' M  A  I  N '''
@@ -157,12 +163,24 @@ if __name__ == "__main__":
     
     eje_robot(0.8, 0.8, 2.8,0.5, 1, 1.75,0)
     
-    bpy.ops.object.metaball_add(type='BALL', radius=1, enter_editmode=False, location=(0, 0, 0))
-    Seleccionado.escalar((0.3, 0.3, 0.3))
-    Seleccionado.mover((0.5, 1, 2.35))
-    
+    link()
     eje_robot(0.7, 0.7, 2.8,0.5, 1.6, 2.8,3.14/3)
     
+    
+    
+    eje_robot(1.6, 0.3, 0.2,0.5, 2, 3,3.14/3)
+    eje_robot(0.18, 0.18, 1.6,0.8, 2.4, 3.22,3.14/3)
+    eje_robot(0.18, 0.18, 1.6,0.2, 2.4, 3.22,3.14/3)
+    
+    eje_robot(1.6, 0.3, 0.2,0.5, 2, 3,3.14)
+    Seleccionado.rotarY(3.14/2)
+    Seleccionado.rotarZ(3.14/2)
+    Seleccionado.rotarX(-3.14/6)
+    
+    eje_robot(0.18, 0.18, 1.6,0.5, 2.2, 3.46,3.14/3)
+    eje_robot(0.18, 0.18, 1.6,0.5, 2.5, 3,3.14/3)
+    
+ 
 
     
  
