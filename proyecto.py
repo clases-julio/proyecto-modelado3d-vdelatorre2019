@@ -5,7 +5,7 @@ import bpy
 '''*********************************************************************'''
 def seleccionarObjeto(nombreObjeto): # Seleccionar un objeto por su nombre
     bpy.ops.object.select_all(action='DESELECT') # deseleccionamos todos...
-    bpy.data.objects[nombreObjeto].select = True # ...excepto el buscado
+    bpy.ops.object.select_pattern(pattern=nombreObjeto,case_sensitive= True, extend=True) # ...excepto el buscado
 
 def activarObjeto(nombreObjeto): # Activar un objeto por su nombre
     bpy.context.scene.objects.active = bpy.data.objects[nombreObjeto]
@@ -154,7 +154,6 @@ if __name__ == "__main__":
     
     soporte(-0.35,0)
     soporte(1.3,0)
-    
     soporte(-0.35,2)
     soporte(1.3,2)
     
@@ -162,7 +161,6 @@ if __name__ == "__main__":
     base_robot(0.3, 0.3, 0.06,0.5, 1, 0.93)
     
     eje_robot(0.8, 0.8, 2.8,0.5, 1, 1.75,0)
-    
     link()
     eje_robot(0.7, 0.7, 2.8,0.5, 1.6, 2.8,3.14/3)
     
@@ -171,7 +169,6 @@ if __name__ == "__main__":
     eje_robot(1.6, 0.3, 0.2,0.5, 2, 3,3.14/3)
     eje_robot(0.18, 0.18, 1.6,0.8, 2.4, 3.22,3.14/3)
     eje_robot(0.18, 0.18, 1.6,0.2, 2.4, 3.22,3.14/3)
-    
     eje_robot(1.6, 0.3, 0.2,0.5, 2, 3,3.14)
     Seleccionado.rotarY(3.14/2)
     Seleccionado.rotarZ(3.14/2)
@@ -179,6 +176,10 @@ if __name__ == "__main__":
     
     eje_robot(0.18, 0.18, 1.6,0.5, 2.2, 3.46,3.14/3)
     eje_robot(0.18, 0.18, 1.6,0.5, 2.5, 3,3.14/3)
+    
+    seleccionarObjeto('Rueda1.001')
+    #seleccionarObjeto('Rueda2.001')
+    #bpy.ops.object.join()
     
  
 
