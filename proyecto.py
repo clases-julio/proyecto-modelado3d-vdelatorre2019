@@ -5,7 +5,8 @@ import bpy
 '''*********************************************************************'''
 def seleccionarObjeto(nombreObjeto): # Seleccionar un objeto por su nombre
     bpy.ops.object.select_all(action='DESELECT') # deseleccionamos todos...
-    bpy.ops.object.select_pattern(pattern=nombreObjeto,case_sensitive= True, extend=True) # ...excepto el buscado
+    for i in nombreObjeto:
+        bpy.ops.object.select_pattern(pattern=i,case_sensitive= True, extend=True) # ...excepto el buscado
 
 def activarObjeto(nombreObjeto): # Activar un objeto por su nombre
     bpy.context.scene.objects.active = bpy.data.objects[nombreObjeto]
@@ -128,44 +129,26 @@ def eje_robot(xe,ye,ze,xm,ym,zm,ang):
     Seleccionado.rotarX(ang)
     
 def link():
+    #link que une los ejes articulados
     bpy.ops.object.metaball_add(type='BALL', radius=1, enter_editmode=False, location=(0, 0, 0))
     Seleccionado.escalar((0.28, 0.28, 0.28))
     Seleccionado.mover((0.5, 1, 2.35))
     
-
-    
-    
-    
-
-'''************'''
-''' M  A  I  N '''
-'''************'''
-if __name__ == "__main__":
-    borrarObjetos()
- 
-
+def ruedas_4():
+    #conjunto de ruedas que forman parte del carro
     rueda(1.94,0,0,2,0,0,2.05,0,0)
     rueda(-0.94,0,0,-1,0,0,-1.05,0,0)
     rueda(1.94,2,0,2,2,0,2.05,2,0)
     rueda(-0.94,2,0,-1,2,0,-1.05,2,0)
     
-    eje_motriz(0)
-    eje_motriz(2)
-    
+def soportes_4():
+    #soportes para sujetar la base del robot
     soporte(-0.35,0)
     soporte(1.3,0)
     soporte(-0.35,2)
     soporte(1.3,2)
     
-    base_robot(0.6, 0.6, 0.08,0.5, 1, 0.65)
-    base_robot(0.3, 0.3, 0.06,0.5, 1, 0.93)
-    
-    eje_robot(0.8, 0.8, 2.8,0.5, 1, 1.75,0)
-    link()
-    eje_robot(0.7, 0.7, 2.8,0.5, 1.6, 2.8,3.14/3)
-    
-    
-    
+def end_effector():
     eje_robot(1.6, 0.3, 0.2,0.5, 2, 3,3.14/3)
     eje_robot(0.18, 0.18, 1.6,0.8, 2.4, 3.22,3.14/3)
     eje_robot(0.18, 0.18, 1.6,0.2, 2.4, 3.22,3.14/3)
@@ -177,10 +160,33 @@ if __name__ == "__main__":
     eje_robot(0.18, 0.18, 1.6,0.5, 2.2, 3.46,3.14/3)
     eje_robot(0.18, 0.18, 1.6,0.5, 2.5, 3,3.14/3)
     
-    seleccionarObjeto('Rueda1.001')
-    #seleccionarObjeto('Rueda2.001')
-    #bpy.ops.object.join()
+
+'''************'''
+''' M  A  I  N '''
+'''************'''
+if __name__ == "__main__":
+    borrarObjetos()
+ 
+    ruedas_4()
     
+    eje_motriz(0)
+    eje_motriz(2)
+    
+    soportes_4()
+    
+    base_robot(0.6, 0.6, 0.08,0.5, 1, 0.65)
+    base_robot(0.3, 0.3, 0.06,0.5, 1, 0.93)
+    
+    eje_robot(0.8, 0.8, 2.8,0.5, 1, 1.75,0)
+    link()
+    eje_robot(0.7, 0.7, 2.8,0.5, 1.6, 2.8,3.14/3)
+    
+    end_effector()
+    
+
+    
+    
+
  
 
     
